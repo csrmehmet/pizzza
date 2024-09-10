@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from "../components/Header";
 import PizzaDetails from '../components/PizzaDetails';
 import SizeSelector from '../components/SizeSelector';
@@ -7,12 +8,22 @@ import ToppingsSelector from '../components/ToppingsSelector';
 import OrderSummary from '../components/OrderSummary';
 import OrderNote from '../components/OrderNote';
 import styled from 'styled-components';
+
 const ContentContainer = styled.div`
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
 `;
 
+const SelectorsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+`;
+
+const SelectorWrapper = styled.div`
+  flex: 1;
+`;
 
 const pizzaData = {
   name: "Position Absolute Acı Pizza",
@@ -30,6 +41,8 @@ const PizzaOrderForm = () => {
   const [quantity, setQuantity] = useState(1);
   const [orderNote, setOrderNote] = useState('');
 
+  const history = useHistory();
+
   const handleToppingChange = (topping) => {
     setToppings(prev => prev.includes(topping) 
       ? prev.filter(t => t !== topping)
@@ -43,6 +56,7 @@ const PizzaOrderForm = () => {
 
   const handleSubmit = () => {
     console.log('Sipariş verildi:', { size, dough, toppings, quantity, orderNote });
+    history.push('/success'); // Başarı sayfasına yönlendirme
   };
 
   const calculateTotal = () => {
@@ -60,17 +74,23 @@ const PizzaOrderForm = () => {
           price={pizzaData.basePrice} 
           description={pizzaData.description}
         />
-        <SizeSelector 
-          title="Boyut Seç" 
-          options={pizzaData.sizes} 
-          value={size} 
-          onChange={setSize} 
-        />
-        <DoughSelector 
-          options={pizzaData.doughTypes} 
-          value={dough} 
-          onChange={setDough} 
-        />
+        <SelectorsContainer>
+          <SelectorWrapper>
+            <SizeSelector 
+              title="Boyut Seç" 
+              options={pizzaData.sizes} 
+              value={size} 
+              onChange={setSize} 
+            />
+          </SelectorWrapper>
+          <SelectorWrapper>
+            <DoughSelector 
+              options={pizzaData.doughTypes} 
+              value={dough} 
+              onChange={setDough} 
+            />
+          </SelectorWrapper>
+        </SelectorsContainer>
         <ToppingsSelector 
           toppings={pizzaData.toppings} 
           selectedToppings={toppings} 
@@ -81,7 +101,7 @@ const PizzaOrderForm = () => {
           quantity={quantity} 
           total={calculateTotal()} 
           onQuantityChange={handleQuantityChange}
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit} // Sipariş ver butonunun onSubmit özelliğine handleSubmit fonksiyonunu bağlıyoruz
         />
       </ContentContainer>
     </>

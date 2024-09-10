@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const SelectorContainer = styled.div`
@@ -18,15 +18,34 @@ const Select = styled.select`
   padding: 5px;
 `;
 
-const DoughSelector = ({ options, value, onChange }) => (
-  <SelectorContainer>
-    <SelectorTitle>Hamur Seç</SelectorTitle>
-    <Select value={value} onChange={(e) => onChange(e.target.value)}>
-      {options.map(option => (
-        <option key={option} value={option}>{option}</option>
-      ))}
-    </Select>
-  </SelectorContainer>
-);
+const RequiredStar = styled.span`
+  color: red;
+  margin-left: 4px;
+`;
+
+const DoughSelector = ({ options, onChange }) => {
+  const [value, setValue] = useState('');
+
+  const handleChange = (event) => {
+    const selectedValue = event.target.value;
+    setValue(selectedValue);
+    onChange(selectedValue);
+  };
+
+  return (
+    <SelectorContainer>
+      <SelectorTitle>
+        Hamur Seç
+        {!value && <RequiredStar>*</RequiredStar>}
+      </SelectorTitle>
+      <Select value={value} onChange={handleChange}>
+        <option value="">Hamur Kalınlığı</option>
+        {options.map(option => (
+          <option key={option} value={option}>{option}</option>
+        ))}
+      </Select>
+    </SelectorContainer>
+  );
+};
 
 export default DoughSelector;

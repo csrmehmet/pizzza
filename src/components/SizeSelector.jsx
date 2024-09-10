@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const SelectorContainer = styled.div`
@@ -18,22 +18,38 @@ const OptionLabel = styled.label`
   display: block;
   margin-bottom: 5px;
 `;
+const RequiredStar = styled.span`
+  color: red;
+  margin-left: 4px;
+`;
 
-const SizeSelector = ({ title, options, value, onChange }) => (
-  <SelectorContainer>
-    <SelectorTitle>{title}</SelectorTitle>
-    {options.map(option => (
-      <OptionLabel key={option}>
-        <input
-          type="radio"
-          value={option}
-          checked={value === option}
-          onChange={() => onChange(option)}
-        />
-        {option}
-      </OptionLabel>
-    ))}
-  </SelectorContainer>
-);
+const SizeSelector = ({ title, options, onChange }) => {
+  const [value, setValue] = useState('');
+
+  const handleChange = (selectedValue) => {
+    setValue(selectedValue);
+    onChange(selectedValue);
+  };
+
+  return (
+    <SelectorContainer>
+      <SelectorTitle>
+        {title}
+        {!value && <RequiredStar>*</RequiredStar>}
+      </SelectorTitle>
+      {options.map(option => (
+        <OptionLabel key={option}>
+          <input
+            type="radio"
+            value={option}
+            checked={value === option}
+            onChange={() => handleChange(option)}
+          />
+          {option}
+        </OptionLabel>
+      ))}
+    </SelectorContainer>
+  );
+};
 
 export default SizeSelector;

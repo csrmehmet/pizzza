@@ -10,8 +10,9 @@ const HeaderContainer = styled.div`
 `;
 
 const LogoImage = styled.img`
-  max-width: 150px;
+  max-width: 350px;
   margin-bottom: 10px;
+  margin-top:30px;
 `;
 
 const Title = styled.h1`
@@ -23,14 +24,16 @@ const Title = styled.h1`
 const Subtitle = styled.p`
   font-family: 'Barlow', sans-serif;
   font-size: 14px;
-  margin: 5px 0;
+  margin-top: 30px;
+    text-align: left;
+  padding-left: 55rem; 
 `;
 
 const Header = () => (
   <HeaderContainer>
     <LogoImage src={Logo} alt="Teknolojik Yemekler Logo" />
     
-    <Subtitle>Anasayfa - Sipariş Oluştur</Subtitle>
+    <Subtitle>Anasayfa - <span style={{ fontWeight: 'bold' }}>Sipariş Oluştur</span></Subtitle>
   </HeaderContainer>
 );
 

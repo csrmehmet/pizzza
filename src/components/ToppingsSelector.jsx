@@ -17,12 +17,22 @@ const ToppingLabel = styled.label`
   color: #5F5F5F;
   display: inline-block;
   width: 33%;
-  margin-bottom: 5px;
+  margin-bottom: 10px; /* Mesafeyi artırdık */
+  padding: 5px 0; /* Ekstra boşluk eklemek için */
+  box-sizing: border-box;
+`;
+
+const MaxToppingsMessage = styled.p`
+  font-family: 'Barlow', sans-serif;
+  color: #5F5F5F;
+  font-size: 14px;
+  margin-bottom: 50px;
 `;
 
 const ToppingsSelector = ({ toppings, selectedToppings, onChange }) => (
   <ToppingsContainer>
     <ToppingsTitle>Ek Malzemeler</ToppingsTitle>
+    <MaxToppingsMessage>En fazla 10 malzeme seçebilirsiniz.</MaxToppingsMessage>
     {toppings.map(topping => (
       <ToppingLabel key={topping}>
         <input

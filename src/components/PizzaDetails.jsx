@@ -42,6 +42,7 @@ const PizzaDescription = styled.p`
   font-size: 14px;
   line-height: 1.6;
   margin: 0;
+  
 `;
 
 const PizzaDetails = ({ name, price, description }) => (
