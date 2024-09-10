@@ -41,9 +41,7 @@ const Button = styled.button`
   cursor: pointer;
   font-weight: bold;
 
-  &:hover {
-    background-color: #ffd700;
-  }
+  
 `;
 
 function Home() {
@@ -57,8 +55,8 @@ function Home() {
   return (
     <Container>
       <Title>Teknolojik Yemekler</Title>
-      <MainText>KOD ACIKTIRIR</MainText>
-        <MainText>PİZZA, DOYURUR</MainText>
+      <MainText>KOD ACIKTIRIR <br /> PİZZA, DOYURUR</MainText>
+        
       <Button onClick={handleOrder}>ACIKTIM</Button>
     </Container>
   );
