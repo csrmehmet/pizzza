@@ -15,18 +15,14 @@ const LogoImage = styled.img`
   margin-top:30px;
 `;
 
-const Title = styled.h1`
-  font-family: 'Roboto Condensed', sans-serif;
-  font-size: 24px;
-  margin: 10px 0;
-`;
+
 
 const Subtitle = styled.p`
   font-family: 'Barlow', sans-serif;
   font-size: 14px;
   margin-top: 30px;
     text-align: left;
-  padding-left: 55rem; 
+  padding-left: 39.5rem; 
 `;
 
 const Header = () => (
